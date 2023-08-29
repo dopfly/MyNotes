@@ -229,3 +229,64 @@ Check Status of Certbot
 sudo systemctl status certbot.timer
 Dry Run SSL Renewal
 sudo certbot renew --dry-run
+
+
+
+
+
+
+
+
+
+
+server {
+  listen 80;
+server_name yourdomain.com www.yourdomain.com
+  location / {
+        root /var/www/hyrect;
+        index  index.html index.htm;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        try_files $uri $uri/ /index.html;
+  }
+}
+
+ server{
+ listen 80;
+ server_name api.yourdomain.com www.api.yourdomain.com
+    location /api {
+	proxy_pass http://69.42.59.18:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+  }
+
+} 
+
+
+
+
+
+ln -s /etc/nginx/sites-available/hyrect /etc/nginx/sites-enabled/hyrect
+
+
+//for showing long time apt install update
+sudo rm /var/lib/dpkg/lock
+
+sudo rm /var/lib/apt/lists/lock
+
+sudo rm /var/cache/apt/archives/lock
+
+sudo apt-get clean
+
+//before install certficate use sudo apt update then use sudo apt upgrade then install certifcite
+
+//For nginx show degraded.
+systemctl reset-failed
+
+
