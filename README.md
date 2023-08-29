@@ -15,9 +15,9 @@ Type a passphrase (characters will not appear in the terminal).
 
 Confirm your passphrase to finish SSH Keygen. You should get an output that looks something like this:
 
-Your public key has been saved in /Users/lamadev/.ssh/id_rsa.pub.
+Your public key has been saved in /Users/yogi/.ssh/id_rsa.pub.
 The key fingerprint is:
-ae:89:72:0b:85:da:5a:f4:7c:1f:c2:43:fd:c6:44:30 lamadev@mac.local
+ae:89:72:0b:85:da:5a:f4:7c:1f:c2:43:fd:c6:44:30 yogi@mac.local
 The key's randomart image is:
 +--[ RSA 2048]----+
 |                 |
@@ -209,3 +209,23 @@ certbot --nginx -d example.com -d www.example.com
 Let’s Encrypt’s certificates are only valid for ninety days. To set a timer to validate automatically:
 
 systemctl status certbot.timer
+
+
+
+
+How to Enable HTTPS in Your Domain Hosted on Linux Remote Server or VPS
+Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security encryption at no charge.
+Certbot is a free, open source software tool for automatically using Let’s Encrypt certificates on manually-administrated websites to enable HTTPS.
+To Access Remote Server via SSH
+Syntax:- ssh -p PORT USERNAME@HOSTIP
+Example:- ssh -p 1034 yogi@216.32.44.12
+Install Certbot and it’s Nginx plugin
+sudo apt install certbot python3-certbot-nginx
+Verify Web Server Ports are Open and Allowed through Firewall
+sudo ufw status verbose
+Obtain an SSL certificate
+sudo certbot --nginx -d your_domain.com -d www.your_domain.com
+Check Status of Certbot
+sudo systemctl status certbot.timer
+Dry Run SSL Renewal
+sudo certbot renew --dry-run
