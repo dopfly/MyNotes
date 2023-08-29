@@ -9,7 +9,7 @@ Launch the Terminal app.
 
 ssh-keygen -t rsa
 
-Press ENTER to store the key in the default folder /Users/lamadev/.ssh/id_rsa).
+Press ENTER to store the key in the default folder /Users/yogi/.ssh/id_rsa).
 
 Type a passphrase (characters will not appear in the terminal).
 
@@ -41,7 +41,7 @@ Connection
 After copying the SSH Key go the to hosting service provider dashboard and paste your key and save. After,
 
 For MAC OS / Linux
-ssh root@<server ip address> 
+ssh root@<server ip addresss> 
 For Windows
 Open the PuTTY app.
 Enter your IP address.
@@ -96,11 +96,11 @@ Uploading Apps Using Git
 apt install git
 mkdir netflix
 cd netflix
-git clone <your repository>
+git clone <your repo > 
 Nginx Configuration for new apps
 nano /etc/nginx/sites-available/netflix
 location /api {
-        proxy_pass http://45.90.108.107:8800;
+        proxy_pass http://48.90.108.107:8800;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -159,7 +159,7 @@ Adding Domain
 
 server {
  listen 80;
- server_name safakkocaoglu.com www.safakkocaoglu.com;
+ server_name domain.com www.domain.com;
 
 location / {
  root /var/www/netflix/client;
@@ -175,7 +175,7 @@ location / {
 
 server {
   listen 80;
-  server_name api.safakkocaoglu.com;
+  server_name api.domain.com;
   location / {
     proxy_pass http://45.90.108.107:8800;
     proxy_http_version 1.1;
@@ -188,7 +188,7 @@ server {
 
 server {
   listen 80;
-  server_name admin.safakkocaoglu.com;
+  server_name admin.domain.com;
   location / {
     root /var/www/netflix/admin;
     index  index.html index.htm;
